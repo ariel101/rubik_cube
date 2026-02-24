@@ -1,4 +1,4 @@
-# grid.py
+
 
 def build_grid(cluster_dets):
 

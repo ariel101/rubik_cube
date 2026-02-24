@@ -20,6 +20,6 @@ color_to_letter = {
     'blue': 'B',
 }
 
-letter_to_color_name = {v: k.capitalize() for k, v in color_to_letter.items()}
+letter_to_color_name = {v: k for k, v in color_to_letter.items()}
 
 faces_order = ['F', 'U', 'R', 'D', 'L', 'B']

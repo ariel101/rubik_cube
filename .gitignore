@@ -1,1 +1,65 @@
 inferencia.py
+bestY26_200.pt
+train.ipynb
+
+# Archivos de Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Archivos de entorno virtual
+venv/
+env/
+.venv/
+ENV/
+
+# Archivos de configuración locales
+*.env
+*.ini
+*.cfg
+*.toml
+*.yaml
+*.yml
+
+# Archivos de logs y temporales
+*.log
+*.tmp
+*.swp
+
+# Archivos de compilación y binarios
+*.so
+*.dll
+*.dylib
+*.exe
+
+# Archivos de notebooks
+.ipynb_checkpoints/
+
+# Archivos de cache
+.cache/
+*.pickle
+
+# Archivos de datasets grandes
+data/
+datasets/
+*.csv
+*.tsv
+*.json
+
+# Resultados de entrenamiento o runs
+runs/
+outputs/
+checkpoints/
+weights/
+*.pt
+*.pth
+
+# Archivos de IDE
+.vscode/
+.idea/
+*.iml
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db

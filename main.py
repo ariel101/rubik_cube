@@ -1,5 +1,3 @@
-# main.py
-
 import cv2
 import numpy as np
 
@@ -28,7 +26,6 @@ def main():
         if not ret:
             break
 
-        
         results = detector.detect(frame)
 
         detections, box_sizes = extract_detections(
@@ -53,6 +50,7 @@ def main():
         )
 
         valid_cluster = []
+        grid = None
 
         if labels is not None:
             unique_labels, counts = np.unique(labels, return_counts=True)
@@ -64,22 +62,36 @@ def main():
                     indices = np.where(labels == label)[0]
                     valid_cluster = [filtered[i] for i in indices]
 
-        grid = None
+        # Construir grid si hay 9 stickers válidos
         if len(valid_cluster) == 9:
             grid = build_grid(valid_cluster)
 
         ui.draw_boxes(frame, valid_cluster)
         ui.draw_fps(frame)
 
+        # Mensaje estático: siempre visible
+        center_color = '?'
+        espected_color = '?'
+        center_color_name = '?'
+        aspected_color_name = '?'
         if grid and capture_face < len(faces_order):
+            center_Sticker = grid[4]
+            center_color_name = center_Sticker['color_name']
+            center_color = color_to_letter.get(center_Sticker['color_name'], '?')
             current_face = faces_order[capture_face]
             espected_color = letter_to_color_name[current_face]
-            ui.draw_text(frame, "Presiona 'c' para capturar", (10, 70), 0.8, (0,255,0), 2)
-            ui.draw_text(frame, f"Capturando cara: {faces_order[capture_face]} (centro: {espected_color})", (10, 110), 0.8, (0,255,0), 2)
+            aspected_color_name = espected_color
+
+        ui.draw_text(frame, f"Centro detectado: {center_color} ({center_color_name}) / esperado: {espected_color} ", (10, 70), 0.8, (0,255,255), 2)
+
+        # Mensaje dinámico: solo si coincide
+        if grid and capture_face < len(faces_order) and center_color == espected_color:
+            ui.draw_text(frame, "Presiona 'c' para capturar", (10, 110), 0.8, (0,255,0), 2)
+            ui.draw_text(frame, f"Capturando cara: {faces_order[capture_face]}", (10, 150), 0.8, (0,255,0), 2)
 
         ui.show(frame)
 
-        key = ui.get_key()
+        key = ui.get_key()  
 
         if key == ord('q'):
             break
@@ -87,7 +99,7 @@ def main():
         if key == ord('r'):
             cube_state.reset()
 
-        if key == ord('c') and grid:
+        if key == ord('c') and grid and center_color_name == aspected_color_name:
             face_string = ''.join(
                 color_to_letter.get(d['color_name'], '?') for d in grid
             )
