@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Rubik Solver</title>
+
+    <link
+        rel="stylesheet"
+        href="/static/style.css"
+    >
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="video-panel">
+
+        <img
+            src="/video"
+            class="video-feed"
+        >
+
+    </div>
+
+    <div class="side-panel">
+
+        <h1>Rubik Solver</h1>
+
+        <div class="info-box">
+
+            <p>
+                Cara actual:
+                <span id="face">?</span>
+            </p>
+
+            <p>
+                Detectado:
+                <span id="detected">?</span>
+            </p>
+
+            <p>
+                Esperado:
+                <span id="expected">?</span>
+            </p>
+
+        </div>
+
+        <div class="buttons">
+
+            <button onclick="captureFace()">
+                Capturar Cara
+            </button>
+
+            <button onclick="resetCube()">
+                Reiniciar
+            </button>
+
+        </div>
+
+        <div class="solution-box">
+
+            <h2>Solución</h2>
+
+            <p id="solution">
+                Esperando...
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="/static/app.js"></script>
+
+</body>
+</html>

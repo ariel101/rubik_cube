@@ -1,6 +1,7 @@
 inferencia.py
 bestY26_200.pt
 train.ipynb
+app.py
 
 # Archivos de Python
 __pycache__/
